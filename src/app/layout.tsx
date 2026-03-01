@@ -8,8 +8,8 @@ import { PageTransition } from "@/components/layout/PageTransition";
 const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Creative Portfolio",
-  description: "Digital Strategist & Creative Designer Portfolio",
+  title: "Gaurav Dawange | Software Engineer",
+  description: "Portfolio of Gaurav Dawange – Software Engineer specializing in Flutter, Java, and full-stack development.",
 };
 
 export default function RootLayout({

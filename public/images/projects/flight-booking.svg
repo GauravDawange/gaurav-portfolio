@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0f1a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#0d1a2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f1117;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="glowA" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:0.35" />
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:0.1" />
+    </linearGradient>
+    <linearGradient id="glowB" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:0.25" />
+      <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:0.05" />
+    </linearGradient>
+    <linearGradient id="planeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="lineH" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:0" />
+      <stop offset="50%" style="stop-color:#0ea5e9;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#6366f1;stop-opacity:0" />
+    </linearGradient>
+    <filter id="blurA">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="60" />
+    </filter>
+    <filter id="blurB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="30" />
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg2)" />
+  
+  <!-- Ambient Glow -->
+  <ellipse cx="350" cy="250" rx="350" ry="280" fill="url(#glowA)" filter="url(#blurA)" />
+  <ellipse cx="850" cy="400" rx="300" ry="250" fill="url(#glowB)" filter="url(#blurA)" />
+  
+  <!-- Grid -->
+  <g opacity="0.05" stroke="#0ea5e9" stroke-width="0.5">
+    <line x1="0" y1="0" x2="0" y2="630"/><line x1="60" y1="0" x2="60" y2="630"/>
+    <line x1="120" y1="0" x2="120" y2="630"/><line x1="180" y1="0" x2="180" y2="630"/>
+    <line x1="240" y1="0" x2="240" y2="630"/><line x1="300" y1="0" x2="300" y2="630"/>
+    <line x1="360" y1="0" x2="360" y2="630"/><line x1="420" y1="0" x2="420" y2="630"/>
+    <line x1="480" y1="0" x2="480" y2="630"/><line x1="540" y1="0" x2="540" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/><line x1="660" y1="0" x2="660" y2="630"/>
+    <line x1="720" y1="0" x2="720" y2="630"/><line x1="780" y1="0" x2="780" y2="630"/>
+    <line x1="840" y1="0" x2="840" y2="630"/><line x1="900" y1="0" x2="900" y2="630"/>
+    <line x1="960" y1="0" x2="960" y2="630"/><line x1="1020" y1="0" x2="1020" y2="630"/>
+    <line x1="1080" y1="0" x2="1080" y2="630"/><line x1="1140" y1="0" x2="1140" y2="630"/>
+    <line x1="0" y1="0" x2="1200" y2="0"/><line x1="0" y1="60" x2="1200" y2="60"/>
+    <line x1="0" y1="120" x2="1200" y2="120"/><line x1="0" y1="180" x2="1200" y2="180"/>
+    <line x1="0" y1="240" x2="1200" y2="240"/><line x1="0" y1="300" x2="1200" y2="300"/>
+    <line x1="0" y1="360" x2="1200" y2="360"/><line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="480" x2="1200" y2="480"/><line x1="0" y1="540" x2="1200" y2="540"/>
+    <line x1="0" y1="600" x2="1200" y2="600"/>
+  </g>
+  
+  <!-- Flight path arc -->
+  <path d="M 150,420 Q 400,80 600,200 T 1050,160" fill="none" stroke="#0ea5e9" stroke-width="1.5" opacity="0.2" stroke-dasharray="12,8" />
+  <path d="M 180,450 Q 420,120 620,230 T 1070,190" fill="none" stroke="#6366f1" stroke-width="0.8" opacity="0.15" stroke-dasharray="6,10" />
+  
+  <!-- Airplane -->
+  <g transform="translate(600, 260) rotate(-15)">
+    <!-- Fuselage -->
+    <ellipse cx="0" cy="0" rx="80" ry="14" fill="url(#planeGrad)" opacity="0.85" />
+    <!-- Nose -->
+    <path d="M80,0 L100,-2 L100,2 Z" fill="#38bdf8" opacity="0.85" />
+    <!-- Main wing -->
+    <path d="M-10,-14 L30,-70 L40,-70 L15,-14 Z" fill="#38bdf8" opacity="0.6" />
+    <path d="M-10,14 L30,70 L40,70 L15,14 Z" fill="#38bdf8" opacity="0.6" />
+    <!-- Tail wing -->
+    <path d="M-70,-14 L-55,-45 L-45,-45 L-55,-14 Z" fill="#6366f1" opacity="0.5" />
+    <path d="M-70,14 L-55,45 L-45,45 L-55,14 Z" fill="#6366f1" opacity="0.5" />
+    <!-- Tail fin -->
+    <path d="M-75,-14 L-85,-35 L-65,-14 Z" fill="#818cf8" opacity="0.5" />
+    <!-- Engine glow -->
+    <ellipse cx="100" cy="0" rx="8" ry="5" fill="#38bdf8" opacity="0.4" filter="url(#blurB)" />
+  </g>
+  
+  <!-- Departure dot -->
+  <g transform="translate(180, 430)">
+    <circle cx="0" cy="0" r="8" fill="#0ea5e9" opacity="0.15" />
+    <circle cx="0" cy="0" r="4" fill="#0ea5e9" opacity="0.6" />
+    <circle cx="0" cy="0" r="2" fill="#fff" opacity="0.8" />
+  </g>
+  
+  <!-- Arrival dot -->
+  <g transform="translate(1020, 180)">
+    <circle cx="0" cy="0" r="8" fill="#10b981" opacity="0.15" />
+    <circle cx="0" cy="0" r="4" fill="#10b981" opacity="0.6" />
+    <circle cx="0" cy="0" r="2" fill="#fff" opacity="0.8" />
+  </g>
+  
+  <!-- Location pins -->
+  <g transform="translate(180, 395)" opacity="0.4">
+    <path d="M0,-20 C-8,-20 -14,-14 -14,-6 C-14,4 0,15 0,15 C0,15 14,4 14,-6 C14,-14 8,-20 0,-20Z" fill="none" stroke="#0ea5e9" stroke-width="1.5" />
+    <circle cx="0" cy="-7" r="4" fill="none" stroke="#0ea5e9" stroke-width="1" />
+  </g>
+  
+  <g transform="translate(1020, 145)" opacity="0.4">
+    <path d="M0,-20 C-8,-20 -14,-14 -14,-6 C-14,4 0,15 0,15 C0,15 14,4 14,-6 C14,-14 8,-20 0,-20Z" fill="none" stroke="#10b981" stroke-width="1.5" />
+    <circle cx="0" cy="-7" r="4" fill="none" stroke="#10b981" stroke-width="1" />
+  </g>
+  
+  <!-- Ticket/card shapes -->
+  <g transform="translate(140, 180)" opacity="0.1">
+    <rect x="0" y="0" width="140" height="80" rx="8" fill="none" stroke="#0ea5e9" stroke-width="1.5" />
+    <line x1="95" y1="0" x2="95" y2="80" stroke="#0ea5e9" stroke-width="1" stroke-dasharray="4,4" />
+    <rect x="10" y="12" width="70" height="8" rx="2" fill="#0ea5e9" />
+    <rect x="10" y="28" width="50" height="6" rx="2" fill="#0ea5e9" />
+    <rect x="10" y="42" width="60" height="6" rx="2" fill="#0ea5e9" />
+    <circle cx="120" cy="40" r="12" fill="none" stroke="#0ea5e9" stroke-width="1" />
+  </g>
+  
+  <g transform="translate(920, 360)" opacity="0.1">
+    <rect x="0" y="0" width="140" height="80" rx="8" fill="none" stroke="#10b981" stroke-width="1.5" />
+    <line x1="95" y1="0" x2="95" y2="80" stroke="#10b981" stroke-width="1" stroke-dasharray="4,4" />
+    <rect x="10" y="12" width="70" height="8" rx="2" fill="#10b981" />
+    <rect x="10" y="28" width="50" height="6" rx="2" fill="#10b981" />
+    <rect x="10" y="42" width="60" height="6" rx="2" fill="#10b981" />
+    <circle cx="120" cy="40" r="12" fill="none" stroke="#10b981" stroke-width="1" />
+  </g>
+  
+  <!-- Globe outline (subtle) -->
+  <g transform="translate(600, 315)" opacity="0.06">
+    <circle cx="0" cy="0" r="200" fill="none" stroke="#0ea5e9" stroke-width="1" />
+    <ellipse cx="0" cy="0" rx="200" ry="80" fill="none" stroke="#0ea5e9" stroke-width="0.8" />
+    <ellipse cx="0" cy="0" rx="80" ry="200" fill="none" stroke="#0ea5e9" stroke-width="0.8" />
+    <line x1="-200" y1="0" x2="200" y2="0" stroke="#0ea5e9" stroke-width="0.5" />
+    <line x1="0" y1="-200" x2="0" y2="200" stroke="#0ea5e9" stroke-width="0.5" />
+  </g>
+  
+  <!-- Decorative lines -->
+  <line x1="0" y1="315" x2="300" y2="315" stroke="url(#lineH)" stroke-width="1" />
+  <line x1="900" y1="315" x2="1200" y2="315" stroke="url(#lineH)" stroke-width="1" />
+  
+  <!-- Particles -->
+  <circle cx="400" cy="120" r="1.5" fill="#38bdf8" opacity="0.4" />
+  <circle cx="800" cy="480" r="1.5" fill="#10b981" opacity="0.3" />
+  <circle cx="300" cy="520" r="1" fill="#6366f1" opacity="0.3" />
+  <circle cx="1100" cy="100" r="1.5" fill="#0ea5e9" opacity="0.3" />
+  <circle cx="500" cy="550" r="1" fill="#818cf8" opacity="0.3" />
+  <circle cx="700" cy="90" r="1" fill="#38bdf8" opacity="0.3" />
+  <circle cx="900" cy="280" r="1" fill="#34d399" opacity="0.2" />
+</svg>

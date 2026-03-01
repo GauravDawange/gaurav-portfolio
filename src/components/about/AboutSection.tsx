@@ -84,15 +84,15 @@ export function AboutSection() {
     }, [mouseX, mouseY]);
 
     return (
-        <div className="relative isolate min-h-screen flex items-center justify-center bg-background py-20 lg:py-0 overflow-hidden">
+        <div className="relative isolate min-h-screen flex items-center justify-center bg-background py-16 md:py-20 lg:py-0 overflow-hidden">
 
             {/* Vivid Background Gradient Blob */}
             <motion.div
                 style={{ x: springX, y: springY }}
-                className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-full blur-[100px] opacity-20 mix-blend-screen pointer-events-none z-0"
+                className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-full blur-[80px] md:blur-[100px] opacity-20 mix-blend-screen pointer-events-none z-0"
             />
 
-            <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 max-w-7xl mx-auto z-10 relative px-6">
+            <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 max-w-7xl mx-auto z-10 relative px-4 sm:px-6">
 
                 {/* Left Column: sticky profile */}
                 <div className="relative flex items-center justify-center lg:h-[80vh] self-center">

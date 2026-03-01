@@ -1,0 +1,142 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0a1a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a0d2e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d1117;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="glow1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.1" />
+    </linearGradient>
+    <linearGradient id="glow2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:0.05" />
+    </linearGradient>
+    <linearGradient id="line1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:0" />
+      <stop offset="50%" style="stop-color:#7c3aed;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0" />
+    </linearGradient>
+    <filter id="blur1">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="60" />
+    </filter>
+    <filter id="blur2">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="40" />
+    </filter>
+    <filter id="glow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)" />
+  
+  <!-- Ambient Glow Blobs -->
+  <ellipse cx="300" cy="200" rx="300" ry="250" fill="url(#glow1)" filter="url(#blur1)" />
+  <ellipse cx="900" cy="450" rx="350" ry="280" fill="url(#glow2)" filter="url(#blur1)" />
+  <ellipse cx="600" cy="315" rx="200" ry="200" fill="#8b5cf6" opacity="0.08" filter="url(#blur1)" />
+  
+  <!-- Grid pattern -->
+  <g opacity="0.06" stroke="#8b5cf6" stroke-width="0.5">
+    <line x1="0" y1="0" x2="0" y2="630" /><line x1="60" y1="0" x2="60" y2="630" />
+    <line x1="120" y1="0" x2="120" y2="630" /><line x1="180" y1="0" x2="180" y2="630" />
+    <line x1="240" y1="0" x2="240" y2="630" /><line x1="300" y1="0" x2="300" y2="630" />
+    <line x1="360" y1="0" x2="360" y2="630" /><line x1="420" y1="0" x2="420" y2="630" />
+    <line x1="480" y1="0" x2="480" y2="630" /><line x1="540" y1="0" x2="540" y2="630" />
+    <line x1="600" y1="0" x2="600" y2="630" /><line x1="660" y1="0" x2="660" y2="630" />
+    <line x1="720" y1="0" x2="720" y2="630" /><line x1="780" y1="0" x2="780" y2="630" />
+    <line x1="840" y1="0" x2="840" y2="630" /><line x1="900" y1="0" x2="900" y2="630" />
+    <line x1="960" y1="0" x2="960" y2="630" /><line x1="1020" y1="0" x2="1020" y2="630" />
+    <line x1="1080" y1="0" x2="1080" y2="630" /><line x1="1140" y1="0" x2="1140" y2="630" />
+    <line x1="0" y1="0" x2="1200" y2="0" /><line x1="0" y1="60" x2="1200" y2="60" />
+    <line x1="0" y1="120" x2="1200" y2="120" /><line x1="0" y1="180" x2="1200" y2="180" />
+    <line x1="0" y1="240" x2="1200" y2="240" /><line x1="0" y1="300" x2="1200" y2="300" />
+    <line x1="0" y1="360" x2="1200" y2="360" /><line x1="0" y1="420" x2="1200" y2="420" />
+    <line x1="0" y1="480" x2="1200" y2="480" /><line x1="0" y1="540" x2="1200" y2="540" />
+    <line x1="0" y1="600" x2="1200" y2="600" />
+  </g>
+  
+  <!-- Central Brain/AI Icon -->
+  <g transform="translate(600, 280)">
+    <!-- Outer ring -->
+    <circle cx="0" cy="0" r="120" fill="none" stroke="#7c3aed" stroke-width="1" opacity="0.3" stroke-dasharray="8,8" />
+    <circle cx="0" cy="0" r="90" fill="none" stroke="#8b5cf6" stroke-width="1.5" opacity="0.4" />
+    <circle cx="0" cy="0" r="60" fill="#8b5cf6" opacity="0.08" />
+    
+    <!-- Brain shape simplified -->
+    <g fill="none" stroke="#a78bfa" stroke-width="2.5" opacity="0.9">
+      <!-- Left hemisphere -->
+      <path d="M-8,-40 C-30,-40 -45,-25 -45,-5 C-45,5 -40,15 -32,20 C-40,28 -35,42 -20,42 C-12,42 -8,38 -8,38" />
+      <path d="M-8,-30 C-22,-30 -32,-20 -32,-8" />
+      <path d="M-8,-15 C-18,-15 -30,-5 -30,8" />
+      <!-- Right hemisphere -->
+      <path d="M8,-40 C30,-40 45,-25 45,-5 C45,5 40,15 32,20 C40,28 35,42 20,42 C12,42 8,38 8,38" />
+      <path d="M8,-30 C22,-30 32,-20 32,-8" />
+      <path d="M8,-15 C18,-15 30,-5 30,8" />
+      <!-- Center line -->
+      <line x1="0" y1="-42" x2="0" y2="42" stroke-width="1.5" />
+    </g>
+    
+    <!-- Neural network dots -->
+    <circle cx="-100" cy="-60" r="4" fill="#7c3aed" opacity="0.6" />
+    <circle cx="-130" cy="20" r="3" fill="#3b82f6" opacity="0.5" />
+    <circle cx="-80" cy="80" r="3.5" fill="#06b6d4" opacity="0.5" />
+    <circle cx="100" cy="-50" r="3.5" fill="#3b82f6" opacity="0.6" />
+    <circle cx="140" cy="30" r="4" fill="#7c3aed" opacity="0.5" />
+    <circle cx="90" cy="90" r="3" fill="#06b6d4" opacity="0.5" />
+    <circle cx="0" cy="-100" r="3" fill="#a78bfa" opacity="0.6" />
+    <circle cx="-60" cy="-90" r="2.5" fill="#8b5cf6" opacity="0.4" />
+    <circle cx="70" cy="-85" r="2.5" fill="#8b5cf6" opacity="0.4" />
+    
+    <!-- Connection lines -->
+    <g stroke="#7c3aed" stroke-width="0.8" opacity="0.2">
+      <line x1="-45" y1="-5" x2="-100" y2="-60" />
+      <line x1="-45" y1="-5" x2="-130" y2="20" />
+      <line x1="-32" y1="20" x2="-80" y2="80" />
+      <line x1="45" y1="-5" x2="100" y2="-50" />
+      <line x1="45" y1="-5" x2="140" y2="30" />
+      <line x1="32" y1="20" x2="90" y2="90" />
+      <line x1="0" y1="-42" x2="0" y2="-100" />
+      <line x1="-8" y1="-40" x2="-60" y2="-90" />
+      <line x1="8" y1="-40" x2="70" y2="-85" />
+    </g>
+  </g>
+  
+  <!-- Floating data blocks -->
+  <g opacity="0.15">
+    <rect x="100" y="100" width="120" height="16" rx="3" fill="#7c3aed" />
+    <rect x="100" y="122" width="80" height="10" rx="2" fill="#7c3aed" />
+    <rect x="100" y="138" width="100" height="10" rx="2" fill="#7c3aed" />
+    
+    <rect x="980" y="450" width="120" height="16" rx="3" fill="#3b82f6" />
+    <rect x="980" y="472" width="90" height="10" rx="2" fill="#3b82f6" />
+    <rect x="980" y="488" width="110" height="10" rx="2" fill="#3b82f6" />
+  </g>
+  
+  <!-- Decorative lines -->
+  <line x1="0" y1="315" x2="350" y2="315" stroke="url(#line1)" stroke-width="1" />
+  <line x1="850" y1="315" x2="1200" y2="315" stroke="url(#line1)" stroke-width="1" />
+  
+  <!-- Search/magnifier accent -->
+  <g transform="translate(200, 420)" opacity="0.2">
+    <circle cx="0" cy="0" r="20" fill="none" stroke="#06b6d4" stroke-width="2" />
+    <line x1="14" y1="14" x2="28" y2="28" stroke="#06b6d4" stroke-width="2.5" stroke-linecap="round" />
+  </g>
+  
+  <!-- Chart accent -->
+  <g transform="translate(950, 180)" opacity="0.15">
+    <rect x="0" y="20" width="12" height="30" rx="2" fill="#8b5cf6" />
+    <rect x="18" y="10" width="12" height="40" rx="2" fill="#7c3aed" />
+    <rect x="36" y="0" width="12" height="50" rx="2" fill="#6d28d9" />
+    <rect x="54" y="15" width="12" height="35" rx="2" fill="#8b5cf6" />
+  </g>
+  
+  <!-- Subtle particles -->
+  <circle cx="150" cy="200" r="1.5" fill="#a78bfa" opacity="0.4" />
+  <circle cx="1050" cy="150" r="1.5" fill="#60a5fa" opacity="0.3" />
+  <circle cx="180" cy="500" r="1" fill="#7c3aed" opacity="0.3" />
+  <circle cx="1000" cy="550" r="1.5" fill="#818cf8" opacity="0.3" />
+  <circle cx="500" cy="100" r="1" fill="#c4b5fd" opacity="0.3" />
+  <circle cx="700" cy="550" r="1" fill="#a78bfa" opacity="0.3" />
+</svg>

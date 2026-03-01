@@ -48,54 +48,53 @@ export function Contact() {
     }
 
     return (
-        <div className="relative min-h-screen bg-background text-white py-24 px-6 md:px-12 flex items-center justify-center overflow-hidden">
+        <div className="relative min-h-screen bg-background text-white py-16 md:py-24 px-4 sm:px-6 md:px-12 flex items-center justify-center overflow-hidden">
             {/* Gradient Blob Background */}
             <motion.div
                 style={{ x: springX, y: springY }}
-                className="absolute w-[600px] h-[600px] bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-full blur-[100px] opacity-20 pointer-events-none mix-blend-screen z-0"
+                className="absolute w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-full blur-[80px] md:blur-[100px] opacity-20 pointer-events-none mix-blend-screen z-0"
             />
 
-            <div className="relative z-10 max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div className="relative z-10 max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
 
                 {/* Left Column: Job Seeker Info */}
-                <div className="space-y-12 flex flex-col justify-center">
+                <div className="space-y-8 md:space-y-12 flex flex-col justify-center">
                     <div>
-                        <p className="text-purple-400 font-medium mb-4 tracking-wider uppercase">Contact</p>
-                        <h2 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
+                        <p className="text-purple-400 font-medium mb-3 md:mb-4 tracking-wider uppercase text-sm">Contact</p>
+                        <h2 className="text-3xl sm:text-4xl md:text-7xl font-bold leading-tight mb-4 md:mb-6">
                             Ready to <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
                                 Start a Project?
                             </span>
                         </h2>
-                        <p className="text-xl text-white/60 max-w-md leading-relaxed">
+                        <p className="text-base md:text-xl text-white/60 max-w-md leading-relaxed">
                             Always interested in discussing new projects and opportunities.
                         </p>
                     </div>
 
-                    <div className="space-y-6">
-                        <div className="flex items-center gap-4 p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer group">
-                            <div className="w-14 h-14 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform">
-                                <Mail className="w-6 h-6" />
+                    <div className="space-y-4 md:space-y-6">
+                        <div className="flex items-center gap-3 md:gap-4 p-4 md:p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer group">
+                            <div className="w-11 h-11 md:w-14 md:h-14 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform shrink-0">
+                                <Mail className="w-5 h-5 md:w-6 md:h-6" />
                             </div>
-                            <div>
-                                <p className="text-sm text-white/40 mb-1">Email Me</p>
-                                <p className="text-lg font-medium tracking-wide">gauravdawange07@gmail.com</p>
+                            <div className="min-w-0">
+                                <p className="text-sm md:text-lg font-medium tracking-wide truncate">gauravdawange07@gmail.com</p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="flex gap-6">
-                        <a href="#" className="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#0077b5] hover:border-[#0077b5] hover:scale-110 transition-all text-white group">
-                            <Linkedin className="w-6 h-6" />
+                    <div className="flex gap-4 md:gap-6">
+                        <a href="https://linkedin.com/in/gaurav-dawange-b90176267" target="_blank" rel="noopener noreferrer" className="w-11 h-11 md:w-14 md:h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#0077b5] hover:border-[#0077b5] hover:scale-110 transition-all text-white group">
+                            <Linkedin className="w-5 h-5 md:w-6 md:h-6" />
                         </a>
-                        <a href="#" className="w-14 h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white hover:text-black hover:scale-110 transition-all text-white">
-                            <Github className="w-6 h-6" />
+                        <a href="https://github.com/GauravDawange" target="_blank" rel="noopener noreferrer" className="w-11 h-11 md:w-14 md:h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white hover:text-black hover:scale-110 transition-all text-white">
+                            <Github className="w-5 h-5 md:w-6 md:h-6" />
                         </a>
                     </div>
                 </div>
 
                 {/* Right Column: Form / Success Message */}
-                <div className="bg-neutral-900/50 backdrop-blur-xl p-8 md:p-12 rounded-[2.5rem] border border-white/10 relative overflow-hidden shadow-2xl min-h-[600px] flex items-center justify-center">
+                <div className="bg-neutral-900/50 backdrop-blur-xl p-5 sm:p-8 md:p-12 rounded-2xl md:rounded-[2.5rem] border border-white/10 relative overflow-hidden shadow-2xl min-h-[450px] md:min-h-[600px] flex items-center justify-center">
                     <AnimatePresence mode="wait">
                         {status === "success" ? (
                             <motion.div
