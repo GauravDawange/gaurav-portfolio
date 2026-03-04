@@ -265,8 +265,6 @@ const ExperienceDetailModal = ({
                     <ScreenshotMarquee images={exp.images} accentColor={exp.accentColor} isPaused={lightboxIdx !== null} onImageClick={(idx) => setLightboxIdx(idx)} />
                 )}
             </div>
-
-            </div>
             </motion.div>
 
             {/* Lightbox */}
@@ -486,8 +484,11 @@ const Card = ({ exp, i, progress, range, targetScale, isLast, onViewMore }: Card
                         </div>
                     </div>
 
-                    {/* Right: Logo Card (Project-style) */}
-                    <div className="group/card relative h-[40vh] md:h-[70vh] rounded-2xl md:rounded-[3rem] overflow-hidden border border-white/10 bg-neutral-900/50 backdrop-blur-xl">
+                    {/* Right: Logo Card (Project-style) – hidden on mobile */}
+                    <div
+                        onClick={onViewMore}
+                        className="hidden lg:block group/card relative h-[70vh] rounded-[3rem] overflow-hidden border border-white/10 bg-neutral-900/50 backdrop-blur-xl cursor-pointer"
+                    >
                         {/* Background gradient */}
                         <div className="absolute inset-0 opacity-20" style={{ background: exp.bgGradient }} />
 
@@ -508,9 +509,9 @@ const Card = ({ exp, i, progress, range, targetScale, isLast, onViewMore }: Card
                                     </span>
                                 ))}
                             </div>
-                            <div className="flex items-center gap-2 text-purple-400 text-xs md:text-sm font-medium">
+                            <div className="flex items-center gap-2 text-purple-400 text-xs md:text-sm font-medium group-hover/card:gap-3 transition-all">
                                 <span>View More</span>
-                                <ExternalLink className="w-3.5 h-3.5 md:w-4 md:h-4" />
+                                <ExternalLink className="w-3.5 h-3.5 md:w-4 md:h-4 group-hover/card:translate-x-1 transition-transform" />
                             </div>
                         </div>
                     </div>
@@ -531,7 +532,7 @@ export function Experience() {
 
     return (
         <>
-        <div ref={container} className="relative h-[300vh] md:h-[400vh] bg-background">
+        <div ref={container} className="relative h-[500vh] md:h-[600vh] bg-background">
             {/* Header */}
             <div className="relative z-10 py-6 md:py-8 text-center bg-background pt-16 md:pt-24 pb-8 md:pb-12">
                 <motion.h2
