@@ -3,27 +3,32 @@
 import { useEffect, useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Mail, Send, Loader2, CheckCircle2 } from "lucide-react";
-import { motion, useMotionValue, useSpring, AnimatePresence } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion, useSpring, AnimatePresence } from "framer-motion";
 import { submitContactForm } from "@/actions/contact";
 
 export function Contact() {
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [errorMessage, setErrorMessage] = useState("");
     const formRef = useRef<HTMLFormElement>(null);
+    const reduceMotion = useReducedMotion();
 
     // Shared Mouse Follow Effect
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
     // Smooth physics
-    const springX = useSpring(mouseX, { stiffness: 100, damping: 20 });
-    const springY = useSpring(mouseY, { stiffness: 100, damping: 20 });
+    const springX = useSpring(mouseX, { stiffness: 70, damping: 24 });
+    const springY = useSpring(mouseY, { stiffness: 70, damping: 24 });
 
     useEffect(() => {
+        if (reduceMotion) return;
+        const canHover = window.matchMedia?.("(pointer: fine)")?.matches;
+        if (!canHover) return;
+
         const handleMouseMove = (e: MouseEvent) => {
             const { innerWidth, innerHeight } = window;
-            const x = e.clientX - innerWidth / 2;
-            const y = e.clientY - innerHeight / 2;
+            const x = (e.clientX - innerWidth / 2) / 12;
+            const y = (e.clientY - innerHeight / 2) / 12;
 
             mouseX.set(x);
             mouseY.set(y);
@@ -31,7 +36,7 @@ export function Contact() {
 
         window.addEventListener("mousemove", handleMouseMove);
         return () => window.removeEventListener("mousemove", handleMouseMove);
-    }, [mouseX, mouseY]);
+    }, [mouseX, mouseY, reduceMotion]);
 
     async function handleSubmit(formData: FormData) {
         setStatus("submitting");
@@ -48,11 +53,11 @@ export function Contact() {
     }
 
     return (
-        <div className="relative min-h-screen bg-background text-white py-16 md:py-24 px-4 sm:px-6 md:px-12 flex items-center justify-center overflow-hidden">
+        <div className="relative min-h-screen bg-background py-16 md:py-24 px-4 sm:px-6 md:px-12 flex items-center justify-center overflow-hidden">
             {/* Gradient Blob Background */}
             <motion.div
                 style={{ x: springX, y: springY }}
-                className="absolute w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-full blur-[80px] md:blur-[100px] opacity-20 pointer-events-none mix-blend-screen z-0"
+                className="absolute w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-full blur-[80px] md:blur-[100px] opacity-15 pointer-events-none mix-blend-multiply dark:opacity-20 dark:mix-blend-screen z-0"
             />
 
             <div className="relative z-10 max-w-7xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16">
@@ -60,41 +65,41 @@ export function Contact() {
                 {/* Left Column: Job Seeker Info */}
                 <div className="space-y-8 md:space-y-12 flex flex-col justify-center">
                     <div>
-                        <p className="text-purple-400 font-medium mb-3 md:mb-4 tracking-wider uppercase text-sm">Contact</p>
-                        <h2 className="text-3xl sm:text-4xl md:text-7xl font-bold leading-tight mb-4 md:mb-6">
+                        <p className="text-primary font-medium mb-3 md:mb-4 tracking-wider uppercase text-sm">Contact</p>
+                        <h2 className="text-3xl sm:text-4xl md:text-7xl font-bold leading-tight mb-4 md:mb-6 text-foreground">
                             Ready to <br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">
                                 Start a Project?
                             </span>
                         </h2>
-                        <p className="text-base md:text-xl text-white/60 max-w-md leading-relaxed">
+                        <p className="text-base md:text-xl text-muted-foreground max-w-md leading-relaxed">
                             Always interested in discussing new projects and opportunities.
                         </p>
                     </div>
 
                     <div className="space-y-4 md:space-y-6">
-                        <div className="flex items-center gap-3 md:gap-4 p-4 md:p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer group">
-                            <div className="w-11 h-11 md:w-14 md:h-14 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 group-hover:scale-110 transition-transform shrink-0">
+                        <div className="flex items-center gap-3 md:gap-4 p-4 md:p-6 rounded-2xl bg-card/60 border border-border hover:bg-accent/40 transition-colors cursor-pointer group">
+                            <div className="w-11 h-11 md:w-14 md:h-14 rounded-full bg-primary/15 flex items-center justify-center text-primary group-hover:scale-110 transition-transform shrink-0">
                                 <Mail className="w-5 h-5 md:w-6 md:h-6" />
                             </div>
                             <div className="min-w-0">
-                                <p className="text-sm md:text-lg font-medium tracking-wide truncate">gauravdawange07@gmail.com</p>
+                                <p className="text-sm md:text-lg font-medium tracking-wide truncate text-foreground">gauravdawange07@gmail.com</p>
                             </div>
                         </div>
                     </div>
 
                     <div className="flex gap-4 md:gap-6">
-                        <a href="https://linkedin.com/in/gaurav-dawange-b90176267" target="_blank" rel="noopener noreferrer" className="w-11 h-11 md:w-14 md:h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-[#0077b5] hover:border-[#0077b5] hover:scale-110 transition-all text-white group">
+                        <a href="https://linkedin.com/in/gaurav-dawange-b90176267" target="_blank" rel="noopener noreferrer" className="w-11 h-11 md:w-14 md:h-14 rounded-full bg-card/60 border border-border flex items-center justify-center hover:bg-accent hover:scale-110 transition-all text-foreground group">
                             <Linkedin className="w-5 h-5 md:w-6 md:h-6" />
                         </a>
-                        <a href="https://github.com/GauravDawange" target="_blank" rel="noopener noreferrer" className="w-11 h-11 md:w-14 md:h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white hover:text-black hover:scale-110 transition-all text-white">
+                        <a href="https://github.com/GauravDawange" target="_blank" rel="noopener noreferrer" className="w-11 h-11 md:w-14 md:h-14 rounded-full bg-card/60 border border-border flex items-center justify-center hover:bg-accent hover:scale-110 transition-all text-foreground">
                             <Github className="w-5 h-5 md:w-6 md:h-6" />
                         </a>
                     </div>
                 </div>
 
                 {/* Right Column: Form / Success Message */}
-                <div className="bg-neutral-900/50 backdrop-blur-xl p-5 sm:p-8 md:p-12 rounded-2xl md:rounded-[2.5rem] border border-white/10 relative overflow-hidden shadow-2xl min-h-[450px] md:min-h-[600px] flex items-center justify-center">
+                <div className="bg-card/60 backdrop-blur-xl p-5 sm:p-8 md:p-12 rounded-2xl md:rounded-[2.5rem] border border-border relative overflow-hidden shadow-2xl min-h-[450px] md:min-h-[600px] flex items-center justify-center">
                     <AnimatePresence mode="wait">
                         {status === "success" ? (
                             <motion.div
@@ -107,14 +112,14 @@ export function Contact() {
                                 <div className="w-24 h-24 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
                                     <CheckCircle2 className="w-12 h-12 text-green-500" />
                                 </div>
-                                <h3 className="text-3xl font-bold text-white">Message Sent!</h3>
-                                <p className="text-white/60 max-w-sm mx-auto">
-                                    Thank you for reaching out. I've received your message and will update you shortly.
+                                <h3 className="text-3xl font-bold text-foreground">Message Sent!</h3>
+                                <p className="text-muted-foreground max-w-sm mx-auto">
+                                    Thank you for reaching out. I&apos;ve received your message and will update you shortly.
                                 </p>
                                 <Button
                                     onClick={() => setStatus("idle")}
                                     variant="outline"
-                                    className="mt-8 rounded-full border-white/10 hover:bg-white/10"
+                                    className="mt-8 rounded-full"
                                 >
                                     Send Another Message
                                 </Button>
@@ -131,46 +136,46 @@ export function Contact() {
                             >
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label className="text-sm font-medium text-white/60 ml-1">Your Name</label>
+                                        <label className="text-sm font-medium text-muted-foreground ml-1">Your Name</label>
                                         <input
                                             name="name"
                                             type="text"
                                             required
                                             placeholder="John Doe"
-                                            className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all placeholder:text-white/20"
+                                            className="w-full bg-background/60 border border-border rounded-xl px-4 py-4 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-muted-foreground/60"
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-sm font-medium text-white/60 ml-1">Your Email</label>
+                                        <label className="text-sm font-medium text-muted-foreground ml-1">Your Email</label>
                                         <input
                                             name="email"
                                             type="email"
                                             required
                                             placeholder="john@example.com"
-                                            className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all placeholder:text-white/20"
+                                            className="w-full bg-background/60 border border-border rounded-xl px-4 py-4 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-muted-foreground/60"
                                         />
                                     </div>
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-white/60 ml-1">Subject</label>
+                                    <label className="text-sm font-medium text-muted-foreground ml-1">Subject</label>
                                     <input
                                         name="subject"
                                         type="text"
                                         required
                                         placeholder="Subject"
-                                        className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all placeholder:text-white/20"
+                                        className="w-full bg-background/60 border border-border rounded-xl px-4 py-4 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-muted-foreground/60"
                                     />
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-white/60 ml-1">Message</label>
+                                    <label className="text-sm font-medium text-muted-foreground ml-1">Message</label>
                                     <textarea
                                         name="message"
                                         rows={5}
                                         required
                                         placeholder="Tell me about..."
-                                        className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-4 text-white focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all resize-none placeholder:text-white/20"
+                                        className="w-full bg-background/60 border border-border rounded-xl px-4 py-4 text-foreground focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all resize-none placeholder:text-muted-foreground/60"
                                     />
                                 </div>
 

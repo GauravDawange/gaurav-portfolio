@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, useScroll, useTransform, MotionValue, AnimatePresence } from "framer-motion";
-import { useRef, useState, useEffect } from "react";
-import { ShoppingBag, Car, ShoppingCart, ChevronLeft, ChevronRight, X, ExternalLink } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { ShoppingBag, ShoppingCart, ChevronLeft, ChevronRight, X, ExternalLink } from "lucide-react";
 import Image from "next/image";
 
 const reclaimImages = [
@@ -39,7 +39,7 @@ const experiences: Experience[] = [
     {
         company: "Alhat Holdings",
         role: "Software Engineer",
-        period: "march 2025 – Present",
+        period: "January 2025 – Present",
         project: "Reclaim",
         logo: "/images/reclaim/reclaim-logo.png",
         description: "Developing an AI-powered sustainable fashion platform that simplifies resale and recycling. Built a cross-platform mobile app with AI image analysis, digital closet management, donation logistics, and a rewards ecosystem.",
@@ -101,8 +101,14 @@ const ExperienceDetailModal = ({
     const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
 
     useEffect(() => {
+        const originalOverflow = document.body.style.overflow;
+        const originalHeight = document.body.style.height;
         document.body.style.overflow = "hidden";
-        return () => { document.body.style.overflow = ""; };
+        document.body.style.height = "100vh";
+        return () => {
+            document.body.style.overflow = originalOverflow;
+            document.body.style.height = originalHeight;
+        };
     }, []);
 
     return (
@@ -110,7 +116,7 @@ const ExperienceDetailModal = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[200] bg-black/90 backdrop-blur-xl overflow-y-auto"
+            className="fixed inset-0 z-[200] bg-background/80 backdrop-blur-xl overflow-y-auto"
             onClick={onClose}
         >
             <motion.div
@@ -124,7 +130,7 @@ const ExperienceDetailModal = ({
             {/* Close button */}
             <button
                 onClick={onClose}
-                className="fixed top-4 right-4 md:top-8 md:right-8 z-[210] w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition-all hover:scale-110"
+                className="fixed top-4 right-4 md:top-8 md:right-8 z-[210] w-10 h-10 md:w-12 md:h-12 rounded-full bg-card/70 border border-border flex items-center justify-center text-foreground hover:bg-accent/70 transition-all hover:scale-110"
             >
                 <X className="w-5 h-5 md:w-6 md:h-6" />
             </button>
@@ -137,12 +143,12 @@ const ExperienceDetailModal = ({
                     transition={{ delay: 0.1 }}
                     className="flex items-center gap-4 md:gap-6 mb-6 md:mb-8"
                 >
-                    <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden border border-white/10 bg-white/5 flex-shrink-0">
+                    <div className="relative w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden border border-border bg-card/60 flex-shrink-0">
                         <Image src={exp.logo} alt={`${exp.project} logo`} fill className="object-cover" sizes="80px" />
                     </div>
                     <div>
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white">{exp.project}</h2>
-                        <p className="text-base md:text-lg text-white/50">{exp.role} • {exp.company}</p>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground">{exp.project}</h2>
+                        <p className="text-base md:text-lg text-muted-foreground">{exp.role} • {exp.company}</p>
                     </div>
                 </motion.div>
 
@@ -151,7 +157,7 @@ const ExperienceDetailModal = ({
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.15 }}
-                    className="inline-flex items-center px-4 py-2 rounded-full bg-white/5 border border-white/10 text-purple-400 font-mono text-sm mb-8"
+                    className="inline-flex items-center px-4 py-2 rounded-full bg-card/60 border border-border text-primary font-mono text-sm mb-8"
                 >
                     {exp.period}
                 </motion.div>
@@ -161,7 +167,7 @@ const ExperienceDetailModal = ({
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="text-base md:text-lg text-white/70 leading-relaxed max-w-3xl mb-10"
+                    className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-3xl mb-10"
                 >
                     {exp.fullDescription}
                 </motion.p>
@@ -173,12 +179,12 @@ const ExperienceDetailModal = ({
                     transition={{ delay: 0.25 }}
                     className="mb-10"
                 >
-                    <h3 className="text-xl md:text-2xl font-semibold text-white mb-4">Key Features</h3>
+                    <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-4">Key Features</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {exp.features.map((f, idx) => (
-                            <div key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/5">
+                            <div key={idx} className="flex items-start gap-3 p-3 rounded-xl bg-card/60 border border-border">
                                 <span className="mt-1 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: exp.accentColor }} />
-                                <span className="text-sm md:text-base text-white/70">{f}</span>
+                                <span className="text-sm md:text-base text-muted-foreground">{f}</span>
                             </div>
                         ))}
                     </div>
@@ -191,12 +197,12 @@ const ExperienceDetailModal = ({
                     transition={{ delay: 0.3 }}
                     className="mb-10"
                 >
-                    <h3 className="text-xl md:text-2xl font-semibold text-white mb-4">Tech Stack</h3>
+                    <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-4">Tech Stack</h3>
                     <div className="flex flex-wrap gap-2 md:gap-3">
                         {exp.tech.map((t) => (
                             <span
                                 key={t}
-                                className="px-4 py-2 rounded-full border text-sm md:text-base text-white/90 font-medium"
+                                className="px-4 py-2 rounded-full border text-sm md:text-base text-foreground font-medium"
                                 style={{ borderColor: exp.accentColor + "40", backgroundColor: exp.accentColor + "15" }}
                             >
                                 {t}
@@ -213,7 +219,7 @@ const ExperienceDetailModal = ({
                         transition={{ delay: 0.35 }}
                         className="mb-10"
                     >
-                        <h3 className="text-xl md:text-2xl font-semibold text-white mb-4">Links</h3>
+                        <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-4">Links</h3>
                         <div className="flex flex-wrap gap-3">
                             {exp.links.map((link, idx) => (
                                 <a
@@ -221,7 +227,7 @@ const ExperienceDetailModal = ({
                                     href={link.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex items-center h-12 px-6 rounded-full border border-white/10 hover:bg-white/10 text-white gap-2 text-sm md:text-base font-medium transition-all hover:scale-105 active:scale-95"
+                                    className="inline-flex items-center h-12 px-6 rounded-full border border-border hover:bg-accent/60 text-foreground gap-2 text-sm md:text-base font-medium transition-all hover:scale-105 active:scale-95"
                                     style={{ backgroundColor: exp.accentColor + "15" }}
                                 >
                                     {link.icon === "apple" ? (
@@ -251,12 +257,12 @@ const ExperienceDetailModal = ({
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[220] bg-black/95 flex items-center justify-center"
+                        className="fixed inset-0 z-[220] bg-background/95 flex items-center justify-center"
                         onClick={() => setLightboxIdx(null)}
                     >
                         <button
                             onClick={() => setLightboxIdx(null)}
-                            className="absolute top-4 right-4 md:top-8 md:right-8 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all"
+                            className="absolute top-4 right-4 md:top-8 md:right-8 p-2 rounded-full bg-card/70 text-foreground hover:bg-accent/70 transition-all"
                         >
                             <X className="w-6 h-6" />
                         </button>
@@ -264,7 +270,7 @@ const ExperienceDetailModal = ({
                         {/* Prev */}
                         <button
                             onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx - 1 + exp.images.length) % exp.images.length); }}
-                            className="absolute left-2 md:left-6 p-2 md:p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all z-10"
+                            className="absolute left-2 md:left-6 p-2 md:p-3 rounded-full bg-card/70 text-foreground hover:bg-accent/70 transition-all z-10"
                         >
                             <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
                         </button>
@@ -289,13 +295,13 @@ const ExperienceDetailModal = ({
                         {/* Next */}
                         <button
                             onClick={(e) => { e.stopPropagation(); setLightboxIdx((lightboxIdx + 1) % exp.images.length); }}
-                            className="absolute right-2 md:right-6 p-2 md:p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-all z-10"
+                            className="absolute right-2 md:right-6 p-2 md:p-3 rounded-full bg-card/70 text-foreground hover:bg-accent/70 transition-all z-10"
                         >
                             <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
                         </button>
 
                         {/* Counter */}
-                        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/60 text-sm font-mono">
+                        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-muted-foreground text-sm font-mono">
                             {lightboxIdx + 1} / {exp.images.length}
                         </div>
                     </motion.div>
@@ -327,12 +333,12 @@ const ScreenshotMarquee = ({
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
         >
-            <h3 className="text-xl md:text-2xl font-semibold text-white mb-3 md:mb-4">Screenshots</h3>
+            <h3 className="text-xl md:text-2xl font-semibold text-foreground mb-3 md:mb-4">Screenshots</h3>
 
             <div className="overflow-hidden relative">
                 {/* Edge fades */}
-                <div className="absolute left-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-r from-black/90 to-transparent z-10 pointer-events-none" />
-                <div className="absolute right-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-l from-black/90 to-transparent z-10 pointer-events-none" />
+                <div className="absolute left-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+                <div className="absolute right-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
                 <motion.div
                     className="flex gap-3 md:gap-4 w-max"
@@ -351,7 +357,7 @@ const ScreenshotMarquee = ({
                             whileHover={{ scale: 1.05, y: -4 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => onImageClick(doubledIdx[idx])}
-                            className="relative flex-shrink-0 w-[120px] h-[220px] sm:w-[140px] sm:h-[260px] md:w-[160px] md:h-[300px] rounded-xl md:rounded-2xl overflow-hidden border border-white/10 bg-black/40 cursor-pointer group shadow-lg"
+                            className="relative flex-shrink-0 w-[120px] h-[220px] sm:w-[140px] sm:h-[260px] md:w-[160px] md:h-[300px] rounded-xl md:rounded-2xl overflow-hidden border border-border bg-card/40 cursor-pointer group shadow-lg"
                         >
                             <Image
                                 src={img}
@@ -372,179 +378,178 @@ const ScreenshotMarquee = ({
     );
 };
 
-interface CardProps {
-    exp: Experience;
-    i: number;
-    progress: MotionValue<number>;
-    range: [number, number];
-    targetScale: number;
-    isLast: boolean;
-    onViewMore: () => void;
-}
-
-const Card = ({ exp, i, progress, range, targetScale, isLast, onViewMore }: CardProps) => {
-    const container = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: container,
-        offset: ['start end', 'start start']
-    });
-
-    const imageScale = useTransform(scrollYProgress, [0, 1], [2, 1]);
-
-    const opacity = useTransform(progress, range, [1, isLast ? 1 : 0]);
-    const scale = useTransform(progress, range, [1, targetScale]);
+export function Experience() {
+    const [selectedExp, setSelectedExp] = useState<Experience | null>(null);
 
     return (
-        <div ref={container} className="h-[100dvh] flex items-center justify-center sticky top-0 overflow-hidden">
-            <motion.div
-                style={{ scale, opacity }}
-                className="absolute inset-0 w-full h-full flex items-center justify-center bg-background origin-top"
-            >
-                <div className="absolute inset-0 bg-background" />
+        <>
+        {/* Mobile (simple list) */}
+        <section className="md:hidden bg-background pt-20 pb-10">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6">
+                <h2 className="text-3xl font-bold tracking-tight text-foreground">
+                    Work{" "}
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">Experience</span>
+                </h2>
+                <p className="mt-2 text-sm text-muted-foreground">
+                    Recent roles and the products I&apos;ve shipped.
+                </p>
 
-                <div
-                    className="absolute inset-0 opacity-40 transition-opacity duration-500"
-                    style={{ background: exp.bgGradient }}
-                />
-
-                <div className="relative z-10 max-w-7xl w-full px-4 sm:px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-12 items-center">
-                    {/* Left: Content */}
-                    <div className="pt-16 md:pt-0">
-                        {/* Logo + Period */}
-                        <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                            <div className="relative w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl overflow-hidden border border-white/10 bg-white/5 flex-shrink-0">
-                                <Image src={exp.logo} alt={`${exp.project} logo`} fill className="object-cover" sizes="56px" />
+                <div className="mt-6 space-y-4">
+                    {experiences.map((exp) => (
+                        <div key={exp.project} className="rounded-2xl border border-border bg-card/60 p-5">
+                            <div className="flex items-center gap-3">
+                                <div className="relative h-12 w-12 rounded-xl overflow-hidden border border-border bg-background">
+                                    <Image src={exp.logo} alt={`${exp.project} logo`} fill className="object-cover" sizes="48px" />
+                                </div>
+                                <div className="min-w-0">
+                                    <p className="text-xs font-mono text-primary">{exp.period}</p>
+                                    <p className="truncate text-lg font-semibold text-foreground">{exp.project}</p>
+                                    <p className="truncate text-sm text-muted-foreground">{exp.role} • {exp.company}</p>
+                                </div>
                             </div>
-                            <div className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 rounded-full bg-white/5 border border-white/10 text-purple-400 font-mono text-xs md:text-sm">
-                                <span>{exp.period}</span>
-                            </div>
-                        </div>
 
-                        <h3 className="text-3xl sm:text-4xl md:text-7xl font-bold text-white mb-1 md:mb-2 leading-tight">
-                            {exp.project}
-                        </h3>
-                        <div className="text-base sm:text-lg md:text-2xl text-white/50 font-medium mb-4 md:mb-8">
-                            {exp.role} • {exp.company}
-                        </div>
+                            <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
+                                {exp.description}
+                            </p>
 
-                        <p className="text-sm md:text-lg text-white/70 leading-relaxed max-w-xl line-clamp-4 md:line-clamp-none">
-                            {exp.description}
-                        </p>
-
-                        {/* Links + View More */}
-                        <div className="flex flex-wrap gap-3 mt-4 md:mt-8">
-                            {exp.links.map((link, idx) => (
-                                <a
-                                    key={idx}
-                                    href={link.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center h-10 md:h-12 px-4 md:px-6 rounded-full bg-white/5 border border-white/10 hover:bg-white/20 text-white gap-2 text-sm md:text-base font-medium transition-all hover:scale-105 active:scale-95"
-                                >
-                                    {link.icon === "apple" ? (
-                                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 md:w-5 md:h-5"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.74 1.18 0 2.21-1.23 3.91-1.12 1.5.09 2.47.71 3.42 1.84-2.5 1.51-2.09 5.83.63 6.99-.48 2.63-1.7 4.77-3.04 4.52zM12.03 7.25c-.23-1.64 1.05-3.32 2.62-3.58.19 1.66-1.55 3.49-2.62 3.58z" /></svg>
-                                    ) : (
-                                        <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 md:w-5 md:h-5"><path d="M3 20.5v-17c0-.83.52-1.28 1-1.5l10 8.5-10 8.5c-.48-.22-1-.67-1-1.5zm2-14.33L12.12 12 5 17.83V6.17zM14.54 12L21 17.5c-.48.22-1 .67-1 1.5H5l9.54-7zM21 6.5L14.54 12 5 5h15c0 .83-.52 1.28-1 1.5z" /></svg>
-                                    )}
-                                    {link.label}
-                                </a>
-                            ))}
-
-                            <button
-                                onClick={onViewMore}
-                                className="inline-flex items-center h-10 md:h-12 px-5 md:px-6 rounded-full text-white gap-2 text-sm md:text-base font-medium transition-all hover:scale-105 active:scale-95 border"
-                                style={{ borderColor: exp.accentColor + "50", backgroundColor: exp.accentColor + "20" }}
-                            >
-                                View More
-                                <ExternalLink className="w-3.5 h-3.5" />
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* Right: Logo Card (Project-style) – hidden on mobile */}
-                    <div
-                        onClick={onViewMore}
-                        className="hidden lg:block group/card relative h-[70vh] rounded-[3rem] overflow-hidden border border-white/10 bg-neutral-900/50 backdrop-blur-xl cursor-pointer"
-                    >
-                        {/* Background gradient */}
-                        <div className="absolute inset-0 opacity-20" style={{ background: exp.bgGradient }} />
-
-                        {/* Logo image */}
-                        <div className="relative w-full h-full overflow-hidden">
-                            <motion.div style={{ scale: imageScale }} className="relative w-full h-full">
-                                <Image src={exp.logo} alt={`${exp.project} logo`} fill className="object-cover transition-transform duration-700 group-hover/card:scale-110" sizes="(max-width: 768px) 100vw, 50vw" />
-                            </motion.div>
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                        </div>
-
-                        {/* Overlaid content */}
-                        <div className="absolute bottom-0 left-0 right-0 p-5 md:p-8">
-                            <div className="flex flex-wrap gap-1.5 md:gap-2 mb-3 md:mb-4">
+                            <div className="mt-4 flex flex-wrap gap-2">
                                 {exp.tech.map((t) => (
-                                    <span key={t} className="px-2 py-0.5 md:px-3 md:py-1 bg-black/40 border border-white/5 rounded-lg text-[10px] md:text-sm text-white/40">
+                                    <span key={t} className="rounded-full border border-border bg-background/60 px-3 py-1 text-xs font-medium text-foreground">
                                         {t}
                                     </span>
                                 ))}
                             </div>
-                            <div className="flex items-center gap-2 text-purple-400 text-xs md:text-sm font-medium group-hover/card:gap-3 transition-all">
-                                <span>View More</span>
-                                <ExternalLink className="w-3.5 h-3.5 md:w-4 md:h-4 group-hover/card:translate-x-1 transition-transform" />
+
+                            <div className="mt-5 flex flex-wrap gap-2">
+                                {exp.links.map((link, idx) => (
+                                    <a
+                                        key={idx}
+                                        href={link.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center h-10 px-4 rounded-full border border-border bg-background/60 text-foreground text-sm font-medium"
+                                    >
+                                        {link.label}
+                                    </a>
+                                ))}
+                                <button
+                                    onClick={() => setSelectedExp(exp)}
+                                    className="inline-flex items-center h-10 px-4 rounded-full border border-border bg-accent/50 text-foreground text-sm font-medium"
+                                >
+                                    View More
+                                </button>
                             </div>
                         </div>
-                    </div>
+                    ))}
                 </div>
-            </motion.div>
-
-        </div>
-    );
-};
-
-export function Experience() {
-    const container = useRef(null);
-    const [selectedExp, setSelectedExp] = useState<Experience | null>(null);
-    const { scrollYProgress } = useScroll({
-        target: container,
-        offset: ['start start', 'end end']
-    });
-
-    return (
-        <>
-        <div ref={container} className="relative h-[500vh] md:h-[600vh] bg-background">
-            {/* Header */}
-            <div className="relative z-10 py-6 md:py-8 text-center bg-background pt-16 md:pt-24 pb-8 md:pb-12">
-                <motion.h2
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="text-3xl sm:text-4xl md:text-6xl font-bold text-white tracking-tighter"
-                >
-                    Work <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500">Experience</span>
-                </motion.h2>
             </div>
+        </section>
 
-            {experiences.map((exp, i) => {
-                const targetScale = 1 - ((experiences.length - i) * 0.05);
-                const step = 1 / experiences.length;
-                // Fade out window: from when this starts being 'active' (i * step) 
-                // to when the NEXT one is fully active ((i + 1) * step).
-                // If it's the last one, it never fades, just scrolls away naturally.
-                const range: [number, number] = [i * step, (i + 1) * step];
+        {/* Desktop (smooth list animation) */}
+        <section className="hidden md:block bg-background pt-24 pb-16">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-12">
+                <div className="text-center">
+                    <motion.h2
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-20%" }}
+                        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                        className="text-3xl sm:text-4xl md:text-6xl font-bold text-foreground tracking-tighter"
+                    >
+                        Work{" "}
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">
+                            Experience
+                        </span>
+                    </motion.h2>
+                    <p className="mt-3 text-base text-muted-foreground">Recent roles and the products I&apos;ve shipped.</p>
+                </div>
 
-                return (
-                    <Card
-                        key={i}
-                        i={i}
-                        exp={exp}
-                        progress={scrollYProgress}
-                        range={range}
-                        targetScale={targetScale}
-                        isLast={i === experiences.length - 1}
-                        onViewMore={() => setSelectedExp(exp)}
-                    />
-                );
-            })}
-        </div>
+                <div className="mt-10 space-y-6">
+                    {experiences.map((exp, i) => (
+                        <motion.div
+                            key={exp.project}
+                            initial={{ opacity: 0, y: 18 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: "-10%" }}
+                            transition={{ duration: 0.6, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                            className="rounded-[2.5rem] border border-border bg-card/60 backdrop-blur p-8 md:p-10"
+                        >
+                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                                <div className="lg:col-span-2">
+                                    <div className="flex items-center gap-4">
+                                        <div className="relative w-14 h-14 rounded-2xl overflow-hidden border border-border bg-background flex-shrink-0">
+                                            <Image src={exp.logo} alt={`${exp.project} logo`} fill className="object-cover" sizes="56px" />
+                                        </div>
+                                        <div className="min-w-0">
+                                            <p className="text-xs font-mono text-primary">{exp.period}</p>
+                                            <h3 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground">{exp.project}</h3>
+                                            <p className="mt-1 text-sm md:text-base text-muted-foreground">{exp.role} • {exp.company}</p>
+                                        </div>
+                                    </div>
+
+                                    <p className="mt-5 text-sm md:text-base text-muted-foreground leading-relaxed max-w-3xl">
+                                        {exp.description}
+                                    </p>
+
+                                    <div className="mt-5 flex flex-wrap gap-2">
+                                        {exp.tech.map((t) => (
+                                            <span key={t} className="rounded-full border border-border bg-background/60 px-3 py-1 text-xs font-medium text-foreground">
+                                                {t}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    <div className="mt-6 flex flex-wrap gap-3">
+                                        {exp.links.map((link, idx) => (
+                                            <a
+                                                key={idx}
+                                                href={link.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center h-11 px-5 rounded-full border border-border bg-background/60 text-foreground gap-2 text-sm font-medium hover:bg-accent/60 transition-all hover:scale-[1.02] active:scale-[0.99]"
+                                            >
+                                                {link.label}
+                                                <ExternalLink className="w-4 h-4 opacity-60" />
+                                            </a>
+                                        ))}
+                                        <button
+                                            onClick={() => setSelectedExp(exp)}
+                                            className="inline-flex items-center h-11 px-5 rounded-full text-foreground gap-2 text-sm font-medium transition-all hover:scale-[1.02] active:scale-[0.99] border"
+                                            style={{ borderColor: exp.accentColor + "50", backgroundColor: exp.accentColor + "20" }}
+                                        >
+                                            View More
+                                            <ExternalLink className="w-4 h-4 opacity-70" />
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <button
+                                    type="button"
+                                    onClick={() => setSelectedExp(exp)}
+                                    className="hidden lg:block relative rounded-[2rem] overflow-hidden border border-border bg-background/40 p-8 text-left"
+                                >
+                                    <div className="absolute inset-0 opacity-40" style={{ background: exp.bgGradient }} />
+                                    <div className="relative">
+                                        <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Highlights</p>
+                                        <ul className="mt-4 space-y-2">
+                                            {exp.features.slice(0, 4).map((f) => (
+                                                <li key={f} className="text-sm text-muted-foreground leading-snug">
+                                                    <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full" style={{ backgroundColor: exp.accentColor }} />
+                                                    {f}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                        <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary">
+                                            View More <ExternalLink className="h-4 w-4" />
+                                        </div>
+                                    </div>
+                                </button>
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+            </div>
+        </section>
 
         {/* Experience Detail Modal – rendered at top level (outside sticky/overflow containers) */}
         <AnimatePresence>

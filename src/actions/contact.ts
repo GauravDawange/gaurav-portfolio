@@ -3,8 +3,7 @@
 import { Resend } from "resend";
 import { z } from "zod";
 
-// Ensure API key is treated as a string (non-null assertion)
-const resend = new Resend(process.env.RESEND_API_KEY || "re_B1EKox5o_3pi4r6wWDWfNxjJQrvTEiyXg");
+const resendApiKey = process.env.RESEND_API_KEY;
 
 const contactSchema = z.object({
     name: z.string().min(1, "Name is required"),
@@ -32,6 +31,12 @@ export async function submitContactForm(formData: FormData) {
     const { name, email, subject, message } = result.data;
 
     try {
+        if (!resendApiKey) {
+            return { success: false, error: "Email is not configured. Please try again later." };
+        }
+
+        const resend = new Resend(resendApiKey);
+
         // 1. Send Admin Email (To You)
         await resend.emails.send({
             from: "Portfolio Contact <onboarding@resend.dev>",
